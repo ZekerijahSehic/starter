@@ -9,22 +9,26 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
   private final ProductRepository productRepository;
 
-  @Transactional(readOnly = true)
-  public Product getById(Long id) {
-    return productRepository.findById(id)
-        .orElseThrow(() -> new StarterException(PRODUCT_NOT_FOUND));
-  }
-
   @Transactional
   public Product save(Product product) {
     return productRepository.save(product);
+  }
+
+  @Transactional
+  public Product update(Product update) {
+    final Product product = getById(update.getId());
+    product.setName(update.getName());
+    return productRepository.save(product);
+  }
+
+  public Product getById(Long id) {
+    return productRepository.findById(id)
+        .orElseThrow(() -> new StarterException(PRODUCT_NOT_FOUND));
   }
 }

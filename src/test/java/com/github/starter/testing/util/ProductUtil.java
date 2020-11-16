@@ -2,17 +2,17 @@ package com.github.starter.testing.util;
 
 import com.github.starter.domain.Product;
 import com.github.starter.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class ProductUtil {
 
-  @Autowired
-  private ProductRepository productRepository;
+  private final ProductRepository productRepository;
 
   public Product createProduct() {
-    return productRepository.save(Product.builder().name("test").build());
+    return productRepository.save(generateProduct());
   }
 
   public Product generateProduct() {
@@ -20,5 +20,4 @@ public class ProductUtil {
             .name("name")
             .build();
   }
-
 }

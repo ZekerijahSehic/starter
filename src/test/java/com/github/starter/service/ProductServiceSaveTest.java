@@ -1,12 +1,11 @@
 package com.github.starter.service;
 
-import com.github.starter.controller.dto.ProductResponseDto;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.github.starter.domain.Product;
 import com.github.starter.testing.util.ProductUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class ProductServiceSaveTest extends IntegrationTest {
 
@@ -21,7 +20,7 @@ class ProductServiceSaveTest extends IntegrationTest {
         final Product product = productUtil.generateProduct();
 
         // When
-        Product result = productService.save(product);
+        final Product result = productService.save(product);
 
         // Then
         assertThat(result).isNotNull();

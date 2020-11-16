@@ -13,8 +13,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
+import lombok.Setter;
 
 @Entity
+@Setter
 @Getter
 @Builder
 @AllArgsConstructor(access = PRIVATE)
